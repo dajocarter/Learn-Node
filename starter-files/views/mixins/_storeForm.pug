@@ -1,2 +1,13 @@
 mixin storeForm(store = {})
-  p This is a mixin for #{store.name}
+  form(action="/add" method="POST" class="card")
+    label(for="name") Name
+    input(type="text" name="name" placeholder="Name of Store")
+    label(for="description") Description
+    textarea(name="description" placeholder="Describe the Store")
+    - const choices = ["Free Wifi", "Open Late", "Family Friendly", "Vegetarian", "Licensed"]
+    ul.tags
+      each choice in choices
+        .tag.tag__choice
+          input(type="checkbox" id=choice value=choice name="tags")
+          label(for=choice) #{choice}
+    input(type="submit" value="Save →" class="button")
